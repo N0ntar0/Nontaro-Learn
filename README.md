@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+# Nontaro-Learn
+のんたろう勉強用
+何を作るかは今は不明
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Git開発　ルール
+- タスクはissueで管理すること
+- ブランチはissueごとにdevelopから切ること
+- ブランチの名称は`feature-{issue番号}`とする
+  - 例：”feature-6”
+- コミットメッセージは、コミットで行った変更内容が端的に分かるように記載すること
+- コミットメッセージには `#{issue番号}`を末尾に記載すること
+  - 例：”削除ボタンを追加した #6”
 
-Currently, two official plugins are available:
+### Git 開発手順
+Gitでの開発は以下の手順にそって行うこと
+  1. issueの発行（または取り掛かるissueを決める）
+    - 発行時はgithubのIssuesタブから`New issue`ボタンを押下し、必要事項を記載する
+  2. ローカルリポジトリのdevelopブランチを最新にする
+     ```bash
+     git switch develop
+     git pull origin develop
+     ```
+  3. ローカルリポジトリで新たにブランチを切る
+     ```bash
+     git switch -c feature-{issue番号}
+     ```
+  4. ソースコード変更
+  5. コミットしたい内容がまとまったらステージング
+     ```bash
+     git add {変更を加えたファイルのファイルパス}
+     ```
+  6. ステージングしたらコミット
+     ```bash
+     git commit -m "{コミットメッセージ} #{issue番号}"
+     ```
+  7. 手順 4, 5, 6をして、リモートリポジトリに反映したいタイミングでプッシュする
+     ```bash
+     git push origin feature-{issue番号}
+     ```
+  8. issueに示されている課題を達成したらプルリクエストを発行する（レビューを依頼をしても良い）
+     1. githubのPull requestタブから`New pull request`を押下
+     2. baseをdevelop、compareをfeature-{issue番号}のブランチにして`Create pull request`を押下
+     3. 必要事項を記載して`Create pull request`を押下する、titleはissueのタイトルにすること
+  9.  プルリクエストからマージする（プロジェクト管理者のみがマージする形でもよい）
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 環境構築手順
+1. リポジトリをクローンする
+   ```bash
+   git clone git@github.com:N0ntar0/Nontaro-Learn.git
+   ```
+2. node_modulesを作成する
+   ```bash
+   cd Nontaro-Learn
+   npm install
+   ```
 
-## Expanding the ESLint configuration
+## サーバー起動
+  ```bash
+  npm run dev
+  ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 静的ファイルに出力
+  ```bash
+  npm run build
+  ```
