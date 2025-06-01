@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  padding-top: 4rem; /* ← ヘッダー分のスペース確保（30px + 余白） */
+  padding-top: 4rem; /* ← ヘッダー分のスペース確保（4rem） */
 }
 
 @keyframes logo-spin {
