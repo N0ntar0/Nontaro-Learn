@@ -9,7 +9,7 @@ function AppHeader() {
           Home
         </NavLink>
         <NavLink to="/roulette" className="app-tab">
-          ルーレット
+          Roulette
         </NavLink>
       </nav>
     </header>
